@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { StyleSheet, View, Text, Alert } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import Input from './Input';
 import Button from '../UI/Button';
 import { getFormattedDate } from '../../util/date';
@@ -16,7 +16,7 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
          isValid: true, 
       },
       description: {
-         valid: defaultValues ? defaultValues.description : "",
+         value: defaultValues ? defaultValues.description : "",
          isValid: true, 
       },
    });
@@ -67,14 +67,14 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
                onChangeText: inputChangedHandler.bind(this, "amount"),
                value: inputs.amount.value,
             }}/>
-            <Input style={styles.rowInput} invalid={!inputs.amount.isValid} label="Date" textInputConfig={{
+            <Input style={styles.rowInput} invalid={!inputs.date.isValid} label="Date" textInputConfig={{
                placeholder: "YYYY-MM-DD",
                maxLength: 10, 
                onChangeText: inputChangedHandler.bind(this, "date"),
                value: inputs.date.value,
             }}/>
          </View>
-         <Input label="Description" invalid={!inputs.amount.isValid} textInputConfig={{
+         <Input label="Description" invalid={!inputs.description.isValid} textInputConfig={{
                multiline: true,
                onChangeText: inputChangedHandler.bind(this, "description"),
                value: inputs.description.value,
